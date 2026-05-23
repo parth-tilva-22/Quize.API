@@ -2,8 +2,12 @@
   public class Quiz {
     public int QuizId { get; set; }
     public int UserId { get; set; }
+    public required User User { get; set; }
     public required string Title { get; set; }
     public string? Description { get; set; } = string.Empty;
     public DateTime CreatedAt { get; set; }
+
+    public ICollection<Question> Questions { get; set; } = [];
+    public ICollection<QuizAttempt> QuizAttempts { get; set; } = [];
   }
 }
