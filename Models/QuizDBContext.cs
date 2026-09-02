@@ -49,7 +49,8 @@ namespace Quiz.API.Models {
       modelBuilder.Entity<QuizAttempt>()
         .HasOne(q => q.Quiz)
         .WithMany(qz => qz.QuizAttempts)
-        .HasForeignKey(q => q.QuizId);
+        .HasForeignKey(q => q.QuizId)
+        .OnDelete(DeleteBehavior.Restrict);
 
       // Configure Answer
       modelBuilder.Entity<Answer>()
@@ -57,15 +58,18 @@ namespace Quiz.API.Models {
       modelBuilder.Entity<Answer>()
         .HasOne(a => a.QuizAttempt)
         .WithMany(q => q.Answers)
-        .HasForeignKey(a => a.QuizAttemptId);
+        .HasForeignKey(a => a.QuizAttemptId)
+        .OnDelete(DeleteBehavior.Restrict);
       modelBuilder.Entity<Answer>()
         .HasOne(a => a.Option)
         .WithMany(o => o.Answers)
-        .HasForeignKey(a => a.OptionId);
+        .HasForeignKey(a => a.OptionId)
+        .OnDelete(DeleteBehavior.Restrict);
       modelBuilder.Entity<Answer>()
         .HasOne(a => a.Question)
         .WithMany(q => q.Answers)
-        .HasForeignKey(a => a.QuestionId);
+        .HasForeignKey(a => a.QuestionId)
+        .OnDelete(DeleteBehavior.Restrict);
     }
   }
 }
