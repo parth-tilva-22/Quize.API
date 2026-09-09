@@ -29,7 +29,8 @@ namespace Quiz.API.Models {
       modelBuilder.Entity<Option>()
         .HasOne(o => o.Question)
         .WithMany(q => q.Options)
-        .HasForeignKey(o => o.QuestionId);
+        .HasForeignKey(o => o.QuestionId)
+        .OnDelete(DeleteBehavior.Cascade);
 
       // Configure Questions
       modelBuilder.Entity<Question>()
